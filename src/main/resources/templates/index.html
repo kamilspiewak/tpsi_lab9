@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+    <head>
+        <title>MiniBlog</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <section layout:fragment="content">
+            <h1>Witamy!</h1>
+        </section>
+           <form action="/newpost" method="POST">
+              Tytuł: <input type="text" name="title" size="150"></input>
+                Treść:
+                <textarea name="content" cols="150" rows="5"></textarea>
+             <input type="submit" value="Dodaj wpis" ></input>
+            </form>
+            <section th:each="post :${blogPosts}">
+                <h2 th:text="${post.title}">hh</h2>
+                <p th:text="${post.content}">pp</p>
+                <a th:href=@{/deletepost(id=${post.id})}>Usuń</a>
+            </section>
+        
+     
+    </body>
+</html>
